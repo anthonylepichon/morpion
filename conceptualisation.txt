@@ -1,0 +1,117 @@
+------------------------------------
+CONCEPTUALISATION DU JEU DU MORPION
+------------------------------------
+1- Contexte
+-----------
+Dans ce jeu il y a deux joueurs.
+- Joueur A
+- Joueur B
+A et B sont adversaires.
+Chacun son tour, un joueur doit cliquer sur une case vide.
+Au clic la case doit être cochée avec un symbole, Une croix pour joueur "A", un rond pour joueur "B"
+Le premier qui aligne vericalement, horizontalement, ou diagonalement les 3 mêmes symboles gagne la partie.
+Les chances de gagner pour les deux joueurs doivent être identiques
+
+2- Fichiers
+-----------
+Je dois avoir 3 fichiers :
+- Index.html (Interface de jeu)
+- Un fichier CSS (Mise en page graphique)
+- un fichier script.js (Interractions dynamiques)
+
+
+3-Partie HTML
+-------------
+- On donne un titre (class="title")
+- Bouton pour Démarrer/Recommencer la partie (class="start")
+- Message qui doit jouer entre Humain et Machine, qui a gagné (class="message")
+- Le plateau doit être une grille de 9 cases (9 div) (class="case")
+
+Dans le HTML, il faut appeler le fichier CSS dans le Head, et appeler le fichier JS dans le body à la fin avant la fermeture de la balise du body.
+
+4-Partie CSS
+-------------
+Tous les éléments sont centrés sur la page
+Le titre est au dessus de la case
+Bouton pour Démarrer/Recommncer la partie
+La grille de 9 cases doit faire 3 cases X 3 cases
+Un texte informe quoi doit jouer
+
+
+5-Partie JavaScript (PSEUDO CODE)
+---------------------------------
+DEBUT
+
+// Initialisation
+Créer un tableau de 9 cases vide
+Mettre jeu_actif à FAUX
+Mettre joueur = "X"
+
+// Fonction initialiserJeu
+FONCTION initialiserJeu
+    Vider le tableau
+    jeu_actif = FAUX
+    joueur = "X"
+    Afficher message "Cliquez sur démarrer"
+    Vider toutes les cases à l’écran
+FIN FONCTION
+
+// Fonction demarrerJeu
+FONCTION demarrerJeu
+    Appeler initialiserJeu
+    jeu_actif = VRAI
+    Afficher "Joueur X commence"
+FIN FONCTION
+
+// Quand on clique sur une case
+FONCTION cliquerCase(case_cliquée)
+    Trouver l’index de la case
+    Appeler jouerCoup(index)
+FIN FONCTION
+
+// Jouer un coup
+FONCTION jouerCoup(index)
+    SI jeu_actif = FAUX OU case déjà remplie ALORS
+        STOP
+    FIN SI
+
+    Mettre symbole du joueur dans le tableau
+    Afficher symbole dans la case
+
+    SI verifierGagnant(joueur) ALORS
+        Afficher "joueur gagne"
+        jeu_actif = FAUX
+        STOP
+    FIN SI
+
+    SI plateauPlein() ALORS
+        Afficher "match nul"
+        jeu_actif = FAUX
+        STOP
+    FIN SI
+
+    Changer de joueur (X ↔ O)
+    Afficher "au tour du joueur suivant"
+FIN FONCTION
+
+// Vérifier gagnant
+FONCTION verifierGagnant(symbole)
+    POUR chaque combinaison gagnante
+        SI 3 cases ont le même symbole ALORS
+            RETOURNER VRAI
+        FIN SI
+    FIN POUR
+    RETOURNER FAUX
+FIN FONCTION
+
+// Vérifier si plateau plein
+FONCTION plateauPlein
+    POUR chaque case
+        SI case vide ALORS
+            RETOURNER FAUX
+        FIN SI
+    FIN POUR
+    RETOURNER VRAI
+FIN FONCTION
+
+FIN
