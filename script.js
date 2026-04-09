@@ -84,9 +84,9 @@ function jouerCoup (index, element) {
     element.innerHTML = "";// On vide la case
     let img = document.createElement("img");// On crée une image
     if (player === "X") {// On choisit l'image selon le joueur
-        img.src = "img/X.png";
+        img.src = "img/zerocrea.png";
     } else {
-        img.src = "img/O.png";
+        img.src = "img/creativo.png";
     }
     element.appendChild(img);// On ajoute l'image dans la case
 
